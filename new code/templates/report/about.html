@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+{% block content%}
+<head>
+	 <style>
+
+#ab {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 auto;
+  float: right;
+
+}
+
+#ab {
+  background-color: black;
+
+}
+
+#ac {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 auto;
+  float: left;
+
+}
+
+#ac {
+  background-color: black;
+
+}
+
+
+table {
+ 
+  background-color: #f1f1c1;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+
+  
+  <h1 style="text-align:-webkit-center">Vendor Details</h1>
+  
+   <a  id ="ab" href="/register" >ADD NEW</a>
+
+   <a  id ="ac" href="/home" >COUNTER</a>
+
+
+
+
+   <table  border = 1>
+  	<tr>
+    <th>ID</th>
+    <th>NAME</th>
+    <th>ADDRESS</th>
+    <th>EMAIL</th>
+    <th>GST</th>
+    <th>PAN</th>
+    </tr>
+  {% for about in userDetails %}
+  <tr>
+    <td> {{about[0]}} </td>
+    <td> {{about[1]}} </td>
+    <td> {{about[2]}} </td>
+    <td> {{about[3]}} </td>
+    <td> {{about[4]}} </td>
+    <td> {{about[5]}} </td>
+  </tr>
+  {% endfor %}
+</table>
+       
+	
+{% endblock content %} 
+
+
+

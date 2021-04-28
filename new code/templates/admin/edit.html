@@ -1,0 +1,27 @@
+<doctype html>
+
+<h2>Edit User</h2>
+<form method="post" action="/update">
+<dl>
+<p>
+<input name="inputName" value="{{ ['name'] }}"
+                 type="text" placeholder="Name" autocomplete="off" required>
+</p>
+<p>
+<input name="inputEmail" value="{{ ['email'] }}" 
+                 type="text" placeholder="Email" autocomplete="off" required>
+</p>
+<p>
+<input name="inputPassword" value="" 
+              type="password" placeholder="Password" autocomplete="off" required>
+</p>
+<p>
+<input name="inputstatus" value="{{ ['status'] }}" 
+                 type="text" placeholder="Status" autocomplete="off" required>
+
+</dl>
+
+<input name="id" value="{{ ['id'] }}" type="hidden">
+<input type="submit" value="Submit">
+</p>
+</form>

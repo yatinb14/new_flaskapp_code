@@ -1,0 +1,56 @@
+
+def vendor(offset):
+  per_page = 10
+  search = ""
+  #per_page = 10
+  vendorDetails = ""
+  userDetails =""
+  per_page = 10
+  offset = (int(offset)*10)
+
+  offset = (int(offset)*10)
+  if request.method == "POST":
+    search = request.form['search']
+  if search == "":
+
+
+    cur = mysql.connection.cursor()
+    resultValue = cur.execute("SELECT * FROM app  order by id LIMIT "+ str(offset) + " , "+str(per_page)+"")
+    if resultValue >= 0:
+      userDetails = cur.fetchall()
+
+    cur1 = mysql.connection.cursor()
+    resultValue1 = cur1.execute("SELECT count(*) FROM app ")
+
+    if resultValue1 >= 0:
+      detail = cur1.fetchall()
+      vendorDetails = tuple(detail[0])
+    
+
+  else:
+
+    cur2 = mysql.connection.cursor()
+    #sql = "SELECT * from app where name LIKE %s OR email LIKE %s or id LIKE %s", (se
+    sql =  "SELECT * from app where id like %s or name like %s " 
+    adr = (search,search)
+
+    resultValue = cur2.execute(sql, adr )
+    if resultValue >= 0:
+      userDetails = cur2.fetchall()
+
+    cur4 = mysql.connection.cursor()
+    resultValue1 = cur4.execute("SELECT count(*) FROM app ") 
+  
+    
+
+    if resultValue1 >= 0:
+      detail = cur4.fetchall()
+      vendorDetails = detail[0]
+
+  
+
+    
+  return render_template('vendor.html',userDetails=userDetails,vendorDetails=vendorDetails,var1=var1)
+
+    
+  #

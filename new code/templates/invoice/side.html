@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 96%;
+  width: 235px;
+  line-height: 45px;
+  font-weight: bold;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #A9A9A9;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  line-height: 45px;
+  top: 50%;
+  font-weight: bold;
+  font-size: 20px;
+  color: #000;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+
+
+/* Main content */
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: #008B8B;
+  color: white;
+}
+
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #8FBC8F;
+  padding-left: 8px;
+}
+
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+  padding-top:10px;
+}
+
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.sbuttons {
+  display: inline-block;
+  float: none;
+  clear: none;
+}
+#social a {
+  
+display:inline-block; width:60px;
+
+
+
+}
+
+
+</style>
+</head>
+<body>
+
+
+<div class="sidenav">
+
+
+ <br> <a href="http://{{ var1[0] }}/"><i class="fa fa-th-large" aria-hidden="true"></i> Home</a>
+  <a href="http://{{ var1[8] }}/"><i class="fa fa-th-large" aria-hidden="true"></i> Expenses</a>
+  <button class="dropdown-btn"><i class="fa fa-th-large" aria-hidden="true"></i>   Invoices
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+     <a href="http://{{ var1[2] }}/invoice">Invoice raised</a>
+    <a href="http://{{ var1[2] }}/invoicerecieved">Invoice recieved</a>
+  </div>
+  <button class="dropdown-btn"><i class="fa fa-th-large" aria-hidden="true"></i> Purchases
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="http://{{ var1[3] }}/purchase">PO Raised</a>
+  <a href="http://{{ var1[3] }}/purchaserecieved">PO Received</a>
+
+  </div>
+  <a href="http://{{ var1[7] }}/"><i class="fa fa-th-large" aria-hidden="true"></i> Report</a>
+  <a   href="http://{{ var1[4] }}/"><i class="fa fa-th-large" aria-hidden="true"></i> Trainers</a>
+  <a href="http://{{ var1[1] }}/"><i class="fa fa-th-large" aria-hidden="true"></i> Vendors</a>
+  <br><br>
+  <div id="social">
+
+ &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://twitter.com/thinknyx" id ="social" class="fa fa-twitter"></a>
+<a href="https://www.linkedin.com/company/thinknyx-technologies/" id ="social"class="fa fa-linkedin"></a>
+<a href="https://www.youtube.com/channel/UCtkE2OJMLcX7UNf1G-RbQfA" id="social" class="fa fa-youtube"></a>
+</div>
+
+
+
+            
+</div>
+
+
+
+<script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  dropdownContent.style.display = "block";
+  }
+  });
+}
+</script>
+
+
+</body>
+</html>  

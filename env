@@ -1,0 +1,14 @@
+#!/bin/bash
+export APP_URL=$(curl 169.254.169.254/2019-10-01/meta-data/public-ipv4)
+export LOGIN_PORT="5000"
+export ADMIN_PORT="5001"
+export HOME_PORT="5002"
+export VENDOR_PORT="5003"
+export INVOICE_PORT="5004"
+export PURCHASE_PORT="5005"
+export TRAINER_PORT="5006"
+export REPORT_PORT="5007"
+export BILL_PORT="5008"
+export DB_HOST="localhost"
+export IPADD=0.0.0.0
+export FLASK_APP=flaskblog.py

@@ -1,0 +1,152 @@
+
+{% extends "layout.html" %}
+{% block content%}
+
+
+<html>
+<head>
+  <script type='text/javascript' src="{{ url_for('static', filename='jquery-3.5.1.js') }}"></script>
+  
+
+  <script>
+  function yesnoCheck() {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('ifYes').style.display = 'block';
+        document.getElementById('ifNo').style.display = 'none';
+        $('#status option[value=Individual]').hide();
+        $('#status option[value=Corporate]').hide();
+    }
+    else if (document.getElementById('noCheck').checked) {
+        document.getElementById('ifNo').style.display = 'block';
+        document.getElementById('ifYes').style.display = 'none';
+        $('#status option[value=Individual]').show();
+        $('#status option[value=Corporate]').show();
+
+
+
+}
+
+
+}
+
+ 
+
+
+</script>
+  <title> Account Management System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+<style>
+
+
+
+button {
+  background-color: #555555;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+
+
+
+
+
+form{
+  width: 600px;
+  height:300px;
+  display: inline-block;
+  margin-left: 60px;
+  margin-right: 0;
+  position: absolute;
+  top:100px;
+  right:0px;
+  
+  
+
+}
+     
+ 
+
+/* Change styles for span and cancel button on extra small screens */
+
+</style>
+</head>
+<body>
+   {% if error %}  
+        <p><strong><b>Error</b></strong>: {{error}}</p>  
+    {% endif %}  
+ 
+
+<form action=" " method="post">
+
+  
+
+  <div class ="content-section"> 
+ 
+<fieldset class ="form-group">
+<legend class ="border-bottom mb-4"> Report Generation</legend> 
+    
+
+    <label for="service">Choose a type of service:</label>
+  <select id="service" name="service">
+    <option value="None">-- Select --</option>
+    <option value="invoice">Invoice</option>
+    <option value="purchaseorder">Purchase Order</option>
+    
+  </select>
+
+<br><br>
+    <label for="duration">Choose Duration:</label><br>
+
+    <b>One Month</b> <input type="radio" onclick="javascript:yesnoCheck();" name="trainertype" id="yesCheck" value="One"> 
+
+   <b>Multiple Month</b> <input type="radio" onclick="javascript:yesnoCheck();" name="trainertype" id="noCheck" value ="Multiple">
+
+   <b>One Year </b> <input type="radio" onclick="javascript:yesnoCheck();" name="trainertype" id="OneCheck" value ="Year"><br><br>
+   
+  <label for="Options" class="required"><b>Options</b></label>
+    <select id="options" type ="text" placeholder="click here">
+      <option value="jan">January</option>
+      <option value="feb" >February</option>
+      <option value="mar" >March</option>  
+      <option value="apr" >April</option> 
+      <option value="may" >May</option> 
+      <option value="jun" >June</option> 
+      <option value="july" >July</option> 
+      <option value="aug" >August</option> 
+      <option value="sept" >September</option> 
+      <option value="oct" >October</option> 
+      <option value="nov" >November</option> 
+      <option value="dec" >December</option> 
+    </select> <br> <br>
+
+ 
+<label for="custom">Custom:</label><br>
+  <b>from date:</b><input type="date" id="fromdate" name="fromdate">
+  <b>to date:</b><input type="date" id="todate" name="todate">
+  <br><br><br>
+  
+    
+        
+    <a href='/getcsv'>Generate Report</a>
+ 
+  
+</fieldset>
+
+
+</div>
+  
+</form>
+
+</body>
+</html>
+{% endblock content %}
+
+

@@ -1,0 +1,11 @@
+FROM thinknyx/python-base
+ENV APP_URL=18.206.224.217
+ENV HOME_PORT=5000
+ENV VENDOR_PORT=5001
+ENV INVOICE_PORT=5002
+ENV PURCHASE_PORT=5003
+COPY home/ /app/
+EXPOSE 5000
+ENV FLASK_APP flaskblog.py
+WORKDIR /app
+CMD ["flask","run","-h","0.0.0.0","-p","5000"]

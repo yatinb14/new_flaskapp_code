@@ -1,0 +1,279 @@
+{% extends "layout.html" %}
+{% block content%}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+  
+
+
+  <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='style.css') }}">
+  <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='print.css') }}">
+  <script type='text/javascript' src="{{ url_for('static', filename='jquery-3.5.1.js') }}"></script>
+  <script type='text/javascript' src="{{ url_for('static', filename='example.js') }}"></script>
+  <script type='text/javascript' src="{{ url_for('static', filename='formToJson.js') }}"></script>
+
+      <script>
+$(document).ready( function() {
+    var now = new Date();
+ 
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+    var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+
+   $('#dated').val(today);
+    
+    $('#test').click(function(){
+        
+        testClicked();
+        
+    });
+});
+function testClicked()
+{
+    
+console.log($   ('#dated').val());    
+}
+    </script>
+  
+  <style >
+    
+ .required:after {
+  content:" *";
+  color: red;
+}
+#formcss{
+  
+  margin-left: 300px;
+  margin-right: 40px;
+  top:2px;
+
+}
+
+
+#submit{
+          background-color: #5f27cd;
+        color: white;
+        padding: 3px 8px;
+        text-align: centre;
+        text-decoration: none;
+      
+        border: 1px #5f27cd;
+        font-weight: bold;
+        border-radius: 5px;
+}
+
+#hiderow,.add{
+  display: table-row;
+}
+  </style>
+
+</head>
+{%include 'side.html'%}
+
+<body >
+  <div class="row">
+<div class="panel panel-primary">
+<div class="panel-heading"><h3 class="panel-title">Add Invoice</h3></div>
+<div class="panel-body">
+
+  
+  <form  id ="abc"  method="POST" action="/newinvoice">
+    
+
+
+      <div id="customer">
+
+                <table id="meta">
+                <tr>
+                    <td class="meta-head  required" >Invoice Number </td>
+                    <td><textarea name ="num" required value="{{ request.form['num']  }}">INA001</textarea></td>
+                    
+                </tr>
+                <div class="form-group">
+                <tr>
+
+                    <td class="meta-head  required ">Date</td>
+                    <td><input class="form-control" type="date" id="dated" name="dated" value="{{ request.form['dated']  }}"required></td>
+                  
+                </tr>
+              </div>
+                
+                <tr>
+                    <td class="meta-head required">Vendor</td>
+                    <td><div class = "select">
+        <select  id="name" name="name"  required>
+                    <option  disabled selected value>-- Select --</option>
+                    {% for x in vendor %}
+                    <option {% if  request.form['name']== 'x'  %} selected ="selected" {% endif %}>{{x[0]}}</option>
+                    {% endfor %}  
+
+               
+        </select>
+      </td>
+    </tr>
+    <tr>
+                    <td class="meta-head">E-mail</td>
+                    <td><div class = "select"> 
+        <textarea id="email" name="email" value="{{ request.form['email']  }}"readonly required> </textarea></td>
+         </tr>
+
+        <tr>
+                    <td class="meta-head">Address</td>
+                    <td><div class = "select"> 
+        <textarea id="ad" name="ad" value="{{ request.form['ad']  }}" readonly required> </textarea>
+        </td>
+         </tr>
+                 <tr>
+                    <td class="meta-head">GST</td>
+                    <td><div class = "select"> 
+        <textarea id="gst" name="gst" value="{{ request.form['gst']  }}" readonly required> </textarea></td>
+         </tr>
+
+                 <tr>
+                    <td class="meta-head">PAN</td>
+                    <td><div class = "select"> 
+        <textarea id="pan" name="pan"  value="{{ request.form['pan']  }}"readonly required> </textarea>
+        </td>
+         </tr>
+
+          <tr>
+                    <td class="meta-head required">Training Name</td>
+                    <td><div class="mumber"> 
+        <textarea id="train" name="train" value="{{ request.form['train']  }}" required>None</textarea>
+        </td>
+         </tr>
+         <tr>
+                   
+ </table>
+
+
+            
+    
+    </div>
+    
+    <table id="items">
+    
+      <tr>
+          <th>Item</th>
+          <th>Description</th>
+          <th>Unit Cost(&#8377;)</th>
+          <th>Quantity</th>
+          <th>Price</th>
+      </tr>
+
+      <tr class="item-row">
+          <td class="item-name"><div class="delete-wpr"><textarea name="item[]">Item Name</textarea></td>
+      
+          <td class="description"><textarea name ="description[]">Description </textarea></td>
+          <td><textarea class="cost" name ="unitcost[]" required>0.0</textarea></td>
+          <td><textarea class="qty" name="quantity[]" required>1</textarea></td>
+          <td><textarea class="price" name="price[]" readonly>Rs 0.0 </textarea></td>
+      </tr>
+      
+      
+      <tr id="hiderow">
+        <td colspan="5"><a id="addrow" href="javascript:;" title="Add a row">Add a row</a></td>
+      </tr>
+      
+           
+      <tr>
+          <td colspan="2" class="blank"> </td>
+          <td colspan="2" class="total-line">Total</td>
+          <td class="total-value"><textarea name="total" id="total"readonly>0.0</textarea></td>
+      </tr>
+      
+      <tr>
+        <tr>
+          <td colspan="2" class="blank"> </td>
+          <td colspan="2" class="total-line">GST(18%)</td>
+
+          <td class="total-value"><textarea name="newgst" id="newgst" readonly>0.0</textarea></td>
+      </tr>
+
+          <td colspan="2" class="blank"> </td>
+          <td colspan="2" class="total-line">Subtotal</td>
+          <td class="total-value"><textarea name="subtotal"id="subtotal" readonly>0.0</textarea></td>
+      </tr>
+     
+      
+      <tr>
+          <td colspan="2" class="blank"> </td>
+          <td colspan="2" class="total-line">Amount in words(rupees)</td>
+          <td class="description"><textarea name="words" id="words"  readonly > </textarea></td>
+      </tr>
+
+     <div>
+
+    
+    </table>
+    <br>
+    <button id="submit" type="submit"  value="submit">Submit</button>
+
+
+    
+  </div>
+  </div>
+  
+
+
+  </form>  
+
+
+<script>
+    
+/*$(function() { 
+  $("#abc").on("submit", function(){
+
+    console.log($(this).formToJson());
+
+    JSON.stringify($("#abc").formToJson());
+
+     //console.log(demo);
+     
+
+
+      return false; 
+    }); 
+});*/
+
+</script>
+    
+
+
+
+
+<script>
+    let vendor = document.getElementById("name");
+    vendor.onchange = function()
+    {
+        vendor_name = vendor.value;
+        //alert(vendor_name);
+        fetch('/getadd/'+vendor_name).then(function(response) {
+            response.json().then(function(data){
+                console.table(data);
+        //alert(JSON.stringify(data[0].address));
+         $('#ad').val(JSON.stringify(data[0].address).replace(/\"/g, ""));
+         $('#gst').val(JSON.stringify(data[0].gstin).replace(/\"/g, ""));
+         $('#pan').val(JSON.stringify(data[0].pan).replace(/\"/g, ""));
+         $('#email').val(JSON.stringify(data[0].email).replace(/\"/g, ""));
+
+         //console.log(data[0].address.replace(/\"/g, "")); 
+
+            });
+        });
+    }
+</script>
+
+      
+ 
+</body>
+</html>
+
+  
+{% endblock content %}   

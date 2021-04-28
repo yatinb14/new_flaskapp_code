@@ -1,0 +1,167 @@
+{% extends "layout.html" %}
+{% block content%}
+  <head>
+    {%include 'side.html'%}
+  <script type='text/javascript' src="{{ url_for('static', filename='jquery-3.5.1.js') }}"></script>
+  
+
+  <script>
+  function yesnoCheck() {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('ifYes').style.display = 'block';
+        document.getElementById('ifNo').style.display = 'none';
+        $('#status option[value=Individual]').hide();
+        $('#status option[value=Corporate]').hide();
+    }
+    else if (document.getElementById('noCheck').checked) {
+        document.getElementById('ifNo').style.display = 'block';
+        document.getElementById('ifYes').style.display = 'none';
+        $('#status option[value=Individual]').show();
+        $('#status option[value=Corporate]').show();
+
+
+
+}
+
+
+}
+
+ 
+
+
+</script>
+<script>
+function validateform(){  
+var name=document.myform.name.value;  
+var pan=document.myform.pan.value; 
+var gstin=document.myform.gstin.value; 
+  
+if (name==null || name==""){  
+  alert("Name can't be blank");  
+  return false;  
+}else if(pan.length<10 || pan.length>10){  
+  alert("Pan must be 10 characters long.");  
+  return false;  
+}else if(gstin.length<15 || gstin.length>15){
+  alert(" GST must be 15 characters long.");
+  return false;
+}
+}
+
+
+</script>  
+
+
+
+
+  </head>
+<div class="row">
+<div class="panel panel-primary">
+<div class="panel-heading"><h3 class="panel-title">Add Trainers</h3></div>
+<div class="panel-body">
+<form name="myform" method="post" action="/newtrainer" >  
+<div class="col-lg-12">  
+
+<div class="form-group">
+<label for="name"  class="required"><b>TrainerName</b></label>
+    <input type="text"  class="form-control" style="text-transform: capitalize;"  placeholder="Enter here" name="name" id="name" value="{{ request.form['name']  }}" required>
+</div>
+
+<div class="form-group">   
+
+ <label for="trainertype" class="required" ><b>Type</b></label><br>
+<b>Internal</b> <input type="radio" onclick="javascript:yesnoCheck();" name="trainertype" id="yesCheck" value="Internal"  {% if request.form['trainertype'] == 'Internal' %} checked="checked" 
+   {% endif %} > 
+
+<b>External</b> <input type="radio" onclick="javascript:yesnoCheck();" name="trainertype" id="noCheck" value ="External" {% if request.form['trainertype'] == 'External' %} checked="checked" 
+   {% endif %}  ><br><br>
+ </div>
+ <div class="form-group">
+  <label for="status" class="required"><b>Status</b></label>
+    <select id="status" type ="text" placeholder="click here" name="status" onchange="if (this.value=='Corporate'){document.getElementById('gstin').style.display='block'}else {document.getElementById('gstin').style.display='none'};">
+      <option  disabled selected value> -- Select an option -- </option>
+      <option value="N/A"   {% if request.form['status'] == 'N/A' %} selected ="selected" 
+   {% endif %} >N/A</option>
+      <option value="Individual"  {% if request.form['status'] == 'Individual' %} selected ="selected" 
+   {% endif %} >Individual</option>
+      <option value="Corporate"  {% if request.form['status'] == 'Corporate' %} selected ="selected" 
+   {% endif %} >Corporate</option>  
+    </select> <br> <br>
+  </div>
+
+ <b>Technologies</b>:<br><br>
+ <div class="form-group">
+<label for="tech1" class="required"><b>Technology 1</b></label>
+    <input type="text" class="form-control" style="text-transform: capitalize;" placeholder="Enter here" name="tech1" id="tech1"  value="{{ request.form['tech1']}}" required>
+  </div>
+<div class="form-group">
+<label for="tech2" class="required"><b>Technology 2</b></label>
+    <input type="text"  class="form-control" style="text-transform: capitalize;" placeholder="Enter here" name="tech2" id="tech2" value="{{ request.form['tech2']}}"required> 
+  </div>
+<div class="form-group">
+<label for="tech3" class="required"><b>Technology 3</b></label>
+    <input type="text" class="form-control" style="text-transform: capitalize;"  placeholder="Enter here" name="tech3" id="tech3" value="{{ request.form['tech3']}}" required>
+  </div>
+
+    <div id="ifYes" class="div"style="display:none">
+      <div class="form-group">
+      <input id="add" type="submit" class="btn btn-primary" value="Submit">  
+      </div>
+
+    
+  </div>
+
+
+  <div id="ifNo" style="display:none">
+     <div class="form-group">    
+    <label for="pan" class="required"><b>PAN</b></label>
+    <input type="text" class="form-control" style="text-transform: capitalize;"placeholder="Enter here" name="pan" minlength="10" maxlength="10" id="pan" value="{{ request.form['pan']}}"> 
+  </div>
+  <div class="form-group">
+<div id="gstin" style="display: none">
+<label  for="gstin" class="required" ><b>GSTIN</b></label>
+    <input type="text"  class="form-control" style="text-transform: capitalize;"  placeholder="Enter here" minlength="15" maxlength="15"name="gstin" value="{{ request.form['gstin']}}">  
+  </div>
+</div>
+
+ <b>Account Details</b>:<br><br>
+ <div class="form-group">
+<label for="acc1" class="required"><b>Account Number</b></label>
+    <input type="text" class="form-control" style="text-transform: capitalize;" placeholder="Enter here" name="acc1" id="acc1" value="{{ request.form['acc1']}}" >
+  </div>
+
+<div class="form-group">
+<label for="acc2" class="required"><b>Holder Name</b></label>
+    <input type="text" class="form-control" placeholder="Enter here" name="acc2" id="acc2" 
+    value="{{ request.form['acc2']}}" > 
+  </div>
+
+<div class="form-group">
+<label for="acc3" class="required"><b>Bank Name </b></label>
+    <input type="text" class="form-control" class="form-control"placeholder="Enter here" name="acc3" id="acc3" value="{{ request.form['acc3']}}" > 
+    </div> 
+<div class="form-group">
+<label for="acc4" class="required"><b>IFSC CODE</b></label>
+    <input type="text" class="form-control" style="text-transform: capitalize;" placeholder="Enter here" name="acc4" id="acc4" value="{{ request.form['acc4']}}" > 
+  </div>
+
+    <div class="form-group">
+<input id="add" type="submit" class="btn btn-primary" value="Submit">  
+</div>
+
+ </div>
+
+      
+</form>  
+
+</div>
+</div>
+</div>
+
+
+
+{% endblock content %}   
+
+ 
+
+

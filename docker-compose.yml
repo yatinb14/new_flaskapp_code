@@ -1,0 +1,80 @@
+version: "3"
+services:
+  thinknyx-mysql:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD="password"
+#      - MYSQL_DATABASE="ams"
+#      - MYSQL_PASSWORD="user"
+#      - MYSQL_USER="user"
+    volumes:
+      - /opt/mysql_data:/var/lib/mysql
+#      - ./db-dump:/docker-entrypoint-initdb.d
+#      - mysql_data:/var/lib/mysql
+    networks:
+      - thinknyx-ams
+  thinknyx-home:
+    build:
+      context: .
+      dockerfile: home_Dockerfile
+    #image: thinknyx/ams-home
+    ports:
+      - "5000:5000"
+    networks:
+      - thinknyx-ams
+<<<<<<< HEAD
+    environment:
+      - 'DB_HOST=ams_thinknyx-mysql_1'
+      - 'APP_URL=${APP_URL}'
+=======
+>>>>>>> 3d009622b348af98ecaf771b601f18d25e4a1c2a
+  thinknyx-invoice:
+    build:
+      context: .
+      dockerfile: invoice_Dockerfile    
+    #image: thinknyx/ams-invoice
+    ports:
+      - "5002:5002"
+    networks:
+      - thinknyx-ams
+<<<<<<< HEAD
+    environment:
+      - 'DB_HOST=ams_thinknyx-mysql_1'
+      - 'APP_URL=${APP_URL}'
+=======
+>>>>>>> 3d009622b348af98ecaf771b601f18d25e4a1c2a
+  thinknyx-vendor:
+    build:
+      context: .
+      dockerfile: vendor_Dockerfile
+    #image: thinknyx/ams-vendor
+    ports:
+      - "5001:5001"
+    networks:
+      - thinknyx-ams
+<<<<<<< HEAD
+    environment:
+      - 'DB_HOST=ams_thinknyx-mysql_1'
+      - 'APP_URL=${APP_URL}'
+=======
+>>>>>>> 3d009622b348af98ecaf771b601f18d25e4a1c2a
+  thinknyx-purchase:
+    build:
+      context: .
+      dockerfile: purchase_Dockerfile
+    #image: thinknyx/ams-purchase
+    ports:
+      - "5003:5003"
+    networks:
+      - thinknyx-ams
+<<<<<<< HEAD
+    environment:
+      - 'DB_HOST=ams_thinknyx-mysql_1'
+      - 'APP_URL=${APP_URL}'
+=======
+>>>>>>> 3d009622b348af98ecaf771b601f18d25e4a1c2a
+networks:
+   thinknyx-ams:
+     driver: bridge 
+volumes:
+  mysql_data:   

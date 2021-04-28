@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+{% block content%}
+<head>
+	 <style>
+
+#ab {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 auto;
+  float: left;
+  border: 2px solid black;
+  border-radius: 5px;
+
+}
+
+#ab {
+  background-color: black;
+
+}
+
+#ac {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 auto;
+  float: left;
+
+}
+
+#ac {
+  background-color: black;
+
+}
+
+
+table {
+ 
+  background-color: #f1f1c1;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+
+  
+  <h1 style="text-align:-webkit-center">Vendor Details</h1>
+  
+   <a  id ="ab" href="/newvendor" >Add New Vendor</a>
+
+
+<table>
+ <body>
+   <div class="container">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Vendor Name</th>
+              <th>Address</th>
+              <th>Email</th>
+              <th>GSTIN</th>
+              <th>PAN</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for record in users %}
+            <tr>
+              <td>{{ record[0] }}</td>
+              <td>{{ record[1] }}</td>
+              <td>{{ record[2] }}</td>
+              <td>{{ record[3] }}</td>
+              <td>{{ record[4] }}</td>
+              <td>{{ record[5] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+         {{ pagination.links }}
+      </div>
+     
+    </div>
+
+	
+{% endblock content %} 
+
+
+

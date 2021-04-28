@@ -1,0 +1,238 @@
+{% extends "layout.html" %}
+{% block content%}
+<head>
+ 
+  
+  <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='man.css') }}">
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  
+  <script type='text/javascript' src="{{ url_for('static', filename='datables.min.js') }}"></script>
+
+  <style type="text/css">
+
+#t1 {
+width:500px;
+height:290px;
+border:3px solid black ;
+right:-50%;
+top:-5px;
+
+
+}
+#t2 {
+width:500px;
+height:290px;
+border:3px solid black ;
+margin-left:10px;
+position: absolute;
+top:123px;
+right:0px;
+padding:0px;
+
+}
+#t1
+{ 
+float:left;
+    }  
+
+#ad {
+  background-color: #f44336;
+  color: white;
+  padding: 4.5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 auto;
+  position: absolute;
+  top:700px;
+  right:60px;
+  float:right;
+}
+
+
+#ad {
+  background-color: black;
+}
+
+
+ 
+ 
+ #t2
+{ 
+float:right   } 
+
+#ha { 
+  display: block;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  
+  margin-right: 0;
+  position: absolute;
+  top:55px;
+  right:150px;
+  
+} 
+ 
+
+
+#ab {
+  background-color: #f44336;
+  color: white;
+  padding: 4.5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 auto;
+  position: absolute;
+  top: 700px;
+  float:right;
+  right:610px;
+  
+  
+
+}
+
+#ab {
+  background-color: black;
+
+}
+#tb {background-color: #f1f1c1;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: auto
+  vertical-align: top
+
+}
+#tc {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+
+}
+.floatLeft { width: 50%; float: left; }
+.floatRight {width: 50%; float: right; }
+.container { overflow: hidden; }
+th{
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+  background-color: black;
+  color: white;
+  font-family: OpenSans-Regular;
+}
+   main .card {
+  margin-bottom: 20px;
+}
+#unique{
+  top:600px;
+  position:absolute;
+}
+
+</style>
+</head>
+{%include 'side.html'%}
+<body>
+
+  
+  <h1 id ="hb" style="text-align:center;margin-left: 5%;"> Invoice In Process</h1>
+  
+ <div class="limiter">
+    
+      <div class="wrap-table100">
+        <div class="table100">
+          <table id="t1">
+            <thead>
+           <tr>
+              <th>ID</th>
+              <th>VendorName</th>
+              <th>InvoiceNo</th>
+            
+              <th>Status</th>
+              <th>Total</th>
+            
+            </tr>
+          </thead>
+
+          <tbody>
+          
+            {% for home in userDetails %}
+            
+            <tr>
+              <td>{{ home[0] }}</td>
+              <td>{{ home[1] }}</td>
+              <td>{{ home[6] }}</td>
+            
+              <td>{{ home[15] }}</td>
+              <td>{{ home[11] }}</td>
+            
+           
+            </tr>
+            {% endfor %}
+          </tbody>
+          
+        </table></div></div></div></div>
+        <br>
+         <a  id="ab" href="http://{{ var1[2] }}/">Preview More</a>
+
+      <h1 id="ha">Open Purchase Order </h1>
+  
+ <div class="limiter">
+
+      <div class="wrap-table100">
+        <div class="table100">
+          <table id="t2">
+          
+   
+    
+          <thead>
+
+        
+            <tr>
+              <th>ID</th>
+              <th>VendorName</th>
+              <th>InvoiceNo</th>
+      
+              <th>Status</th>
+              <th>Total</th>
+            
+            </tr>
+          </thead>
+
+          <tbody>
+          
+            {% for home in purchaseDetails %}
+            <tr>
+              <td>{{ home[0] }}</td>
+              <td>{{ home[1] }}</td>
+              <td>{{ home[6] }}</td>
+              
+              <td>{{ home[15] }}</td>
+              <td>{{ home[11]}}</td>
+           
+           
+            </tr>
+            {% endfor %}
+          </tbody>
+          
+        </table></div></div></div></div>
+        <a  id="ad" href="http://{{ var1[3] }}/">Preview More</a>
+
+
+
+
+
+
+  
+        
+    </body>
+       <br>
+       <br>
+       <br>
+       <br>
+   
+
+  
+{% endblock content %} 

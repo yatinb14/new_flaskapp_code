@@ -1,0 +1,24 @@
+ pip install flask
+ pip install virtualenv
+ pip install flask
+ pip install flask-mysql
+ pip install flask-mysqldb
+ pip install flask-wtf
+ pip install email-validator
+ pip install -U flask-paginate
+ pip install wkhtmltopdf
+ pip install pdfkit
+ pip install jsonify
+ pip install flask-mail
+ pip install flask-wkhtmltopdf
+
+
+ set APP_URL=127.0.0.1
+ set HOME_PORT=5000
+ set VENDOR_PORT=5001
+ set INVOICE_PORT=5002
+ set PURCHASE_PORT=5003
+
+ In advance settings,go to environment variables and set these.
+
+

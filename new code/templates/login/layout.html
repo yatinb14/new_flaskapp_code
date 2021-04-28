@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+
+	<style>
+/* Style the element with the id "myHeader" */
+#fixed{
+   right: 0;
+    left: 0;
+    z-index: 1030;
+    margin-bottom: 25px;
+}
+
+#footer {
+  padding: 3px;
+  background-color: #5f788a;
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: white;
+   text-align: center;
+  
+
+}  
+#left {
+  position: absolute;
+  top: 5px;
+  left: 1px;
+  
+}
+.dropbtn {
+  
+  color: white;
+  padding: 12px;
+  font-size: 22px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: fixed;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+
+</style>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+
+	{% if title %}
+	<title> Account Management System -{{title}}</title>
+	{% else %}
+	<title> Account Management System</title>
+	{% endif %}
+	</head>
+<body>
+
+<header class="site-header">
+   <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top" id ='fixed' >
+    <div class="container">
+    	<div id="left">
+    	<a  href="http://{{ var1[0] }}/">	
+       <img src="{{url_for('static', filename='logo.png')}}"height="40" width="150" style="float-left" >
+   </div>
+      <a class="navbar-brand mr-4" href="http://{{ var1[0] }}/">AMS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarToggle">
+        <div class="navbar-nav mr-auto">
+           <a class="nav-item nav-link" href="http://{{ var1[0] }}/">Home</a>
+           <a class="nav-item nav-link" href="http://{{ var1[1] }}/">Vendors</a>
+           <a class="nav-item nav-link" href="http://{{ var1[2] }}/">Invoices</a>
+           <a class="nav-item nav-link" href="http://{{ var1[3] }}/">Purchase Orders</a>
+           <a class="nav-item nav-link" href="http://{{ var1[4] }}/">Trainers</a>
+           <a class="nav-item nav-link" href="http://{{ var1[7] }}/">Report</a>
+
+        </div>
+        <!-- Navbar Right Side -->
+
+        <div class="dropdown">
+  <a onclick="myFunction()" class="dropbtn">+</a>
+  <div id="myDropdown" class="dropdown-content">
+     <a href="http://{{ var1[1] }}/newvendor">New Vendor</a>
+    <a href="http://{{ var1[2] }}/newinvoice">New Invoice</a>
+    <a href="http://{{ var1[3] }}/newpurchase">New Purchase Order</a>
+    <a href="http://{{ var1[4] }}/newtrainer">New Trainer</a>
+  </div>
+</div>
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
+
+
+
+           <div class="navbar-nav">
+          <a class="nav-item nav-link" href="https://www.thinknyx.com">Thinknyx Home</a>
+          <a class="nav-item nav-link" href="/">Certifications</a>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+	<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8">
+      {% with messages= get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category,message in messages %}
+      <div class="alert alert-{{category}}">
+      	{{message}}
+      </div>
+
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </div>
+</div>
+</main>
+      <footer id ='footer'>
+        <p>Thinknyx Technologies LLP<br>
+          </footer>
+      
+         
+
+
+    
+
+
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

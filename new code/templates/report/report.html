@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<html>
+<head>
+  <title> Account Management System</title>
+
+
+
+<style>
+  #fixed{
+   right: 0;
+    left: 0;
+    z-index: 1030;
+    margin-bottom: 25px;
+    background-color: #A9A9A9;
+}
+
+  #footer {
+  padding: 3px;
+  background-color: #A9A9A9;
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: white;
+   text-align: center;
+  
+
+}  
+
+
+
+
+button {
+  background-color: #008080;
+  color: #008080;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+
+
+
+
+
+form{
+  width: 600px;
+  height:300px;
+  display: inline-block;
+  margin-left: 60px;
+  margin-right: 0;
+  position: absolute;
+  background-color: #2F4F4F;
+  color: #778899;
+  top: 50px;
+  left: 300px;
+  right: 0;
+  
+  
+
+}
+#GR{
+	cursor: pointer;
+}
+     
+ 
+
+/* Change styles for span and cancel button on extra small screens */
+
+</style>
+</head>
+{%include 'side.html'%}
+<body>
+   {% if error %}  
+        <p><strong><b>Error</b></strong>: {{error}}</p>  
+    {% endif %}  
+
+ 
+
+<form action="/result" method="post">
+
+  
+
+  <div class ="content-section"> 
+ 
+<fieldset class ="form-group">
+<legend class ="border-bottom mb-4"> Report Generation</legend> 
+<label for="service" name="service" id="service" class="required">Choose a type of service</label>
+<select id="service" name="service">
+    <option value="None">-- Select --</option>
+    <option value="invoice">Invoice</option>
+    <option value="purchase">Purchase</option>
+  
+    
+  </select>
+
+<br><br>
+    <label for="duration">Choose Duration:</label>
+  <select id="duration" name="duration" onchange="if (this.value=='custom'){document.getElementById('custom').style.display='block'}else {document.getElementById('custom').style.display='none'};">
+  	<option value="None">-- Select --</option>
+    <option value="onemonth">One Month</option>
+    <option value="quarter">Quarterly Year</option>
+    <option value="half">Half Year</option>
+    <option value="oneyear">One Year</option>
+    <option value="custom">Custom Date</option>
+    
+  </select>
+  <br><br>
+ <div id ="custom" style="display: none">
+<label for="custom">Custom:</label>
+  <b>from date:</b><input type="date" id="fromdate" name="fromdate">
+  <b>to date:</b><input type="date" id="todate" name="todate">
+  <br><br><br>
+</div>
+
+
+    
+    
+  <input id="GR" type="submit" value="Generate Report">
+
+
+ 
+  
+</fieldset>
+
+
+</div>
+  
+</form>
+<footer id ='footer'>
+        <p style="color:black;">Thinknyx Technologies LLP<br>
+          </footer>
+
+</body>
+</html>
+{%endblock content%}
+
+

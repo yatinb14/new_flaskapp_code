@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% block content%}
+
+<h1>Dashboard <small>Home Page</small></h1>
+
+<div class="row">
+
+
+<div class="col-lg-6">
+<div class="panel panel-primary">
+<div class="panel-heading"><h3 class="panel-title">Invoice In Process</h3></div>
+<div class="panel-body">
+
+
+<div class="table-responsive">
+<table class="table table-striped table-bordered">
+<thead>
+    <tr>
+      <th>ID</th>
+      <th>VendorName</th>
+      <th>InvoiceNo</th>
+      <th>Status</th>
+      <th>Total</th>
+    
+    </tr>
+</thead>
+
+<tbody>
+{% for home in userDetails %}
+<tr>
+	<td>{{ home[0] }}</td>
+	<td>{{ home[1] }}</td>
+	<td>{{ home[6] }}</td>
+	<td>{{ home[15] }}</td>
+	<td>{{ home[11] }}</td>
+</tr>
+{% endfor %}
+            
+</tbody>
+</table>
+
+<a id="ab" href="http://{{ var1[2] }}/" class="btn btn-info btn-xs"">Preview More</a>
+
+</div>
+
+
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-6">
+<div class="panel panel-primary">
+<div class="panel-heading"><h3 class="panel-title">Open Purchase Order</h3></div>
+<div class="panel-body">
+
+
+<div class="table-responsive">
+<table class="table table-striped table-bordered">
+<thead>
+     <tr>
+      <th>ID</th>
+      <th>VendorName</th>
+      <th>InvoiceNo</th>
+      <th>Status</th>
+      <th>Total</th>
+    </tr>
+</thead>
+<tbody>
+{% for home in purchaseDetails %}
+    <tr>
+      <td>{{ home[0] }}</td>
+      <td>{{ home[1] }}</td>
+      <td>{{ home[6] }}</td>
+      <td>{{ home[15] }}</td>
+      <td>{{ home[11]}}</td>
+   </tr>
+{% endfor %}
+
+</tbody>
+</table>
+
+<a  id="ab" href="http://{{ var1[3] }}/" class="btn btn-info btn-xs"">Preview More</a>
+
+</div>
+
+
+</div>
+</div>
+</div>
+
+  
+{% endblock content %} 

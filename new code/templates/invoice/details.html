@@ -1,0 +1,310 @@
+
+  
+{% extends "layout.html" %}
+{% block content%}
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+ 
+   <style>
+
+
+
+
+#footer {
+  padding: 3px;
+  background-color: #cccccc;
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: white;
+   text-align: center;
+  
+
+}  
+
+#footer1{
+
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+}      
+#ab {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 auto;
+  float: left;
+  border: 2px solid black;
+  border-radius: 5px;
+
+}
+
+#ab {
+  background-color: black;
+
+}
+
+#ac {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 auto;
+  float: left;
+
+}
+
+#ac {
+  background-color: black;
+
+}
+
+
+
+#table {
+
+  margin-left: 100px;
+  background-color: #f1f1c1;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%
+  
+}
+
+
+td {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 1px;
+}
+th{
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 4px;
+  background-color: black;
+  color: white;
+}
+
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+tr{
+  text-align: center;
+}
+
+
+</style>
+</head>
+{%include 'side.html'%}
+
+  
+  <h1 style="text-align:-webkit-center"></h1>
+
+<input style="margin-left: 100px;" id="myInput" type="text" placeholder="Search..">
+<br><br>
+  
+
+
+  
+
+
+
+
+   <table  id ="table" border = 1>
+    <tr>
+      <thead>
+   <th>ID</th>
+              <th>Name</th>
+              <th>GST Number</th>
+            
+              <th>PAN</th>
+              <th>File</th>
+              <th>Invoice Number</th>
+              <th>Total</th>
+              <th>GST</th>
+              <th>Subtotal</th>
+            
+              <th>Status</th>
+
+
+            </thead>
+            
+    </tr>
+  {% for details in userDetails %}
+  <tr>
+    <tbody id="myTable">
+   <td>{{ details[0] }}</td>
+              <td>{{ details[1] }}</td>
+              <td>{{ details[3] }}</td>
+      
+              <td>{{ details[4] }}</td>
+              <td>{{ details[5] }}</td>
+              <td>{{ details[6] }}</td>
+      
+              <td>{{ details[10] }}</td>
+              <td>{{ details[14] }}</td>
+              <td>{{ details[11] }}</td>
+            
+              <td>{{ details[15] }}</td>
+
+              <td> <a href="/updatenew/{{details.0}}" class="btn btn-warning btn-xs"  >Edit</a></td>
+                <td><a href="/deletenew/{{ details.0 }}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure For Delete?')">Delete</a>
+              </td></tr>
+              <div id="modaledit{{details.0}}" class="modal fade" role="dialog">
+
+
+   <div class="modal-dialog">
+
+
+      <div class="modal-content">
+
+
+         <div class="modal-header">
+
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+            
+
+
+         </div>
+
+
+         <div class="modal-body">
+
+
+            <form action="/" method="POST">
+
+
+               <div class="form-group">
+
+
+                  <label>Name:</label>
+                   <input type="hidden"  name="id" value="{{details.0}}">
+
+                  <input type="text" class="form-control" name="name" value="{{details.1}}">
+
+
+               </div>
+
+
+
+               
+
+
+                  
+
+                <div class="form-group">
+
+
+                  <label>GST:</label>
+
+                  <input type="text" class="form-control" name="gst" value="{{details.3}}">
+
+
+               </div>
+
+                <div class="form-group">
+
+
+                  <label>PAN:</label>
+
+                  <input type="text" class="form-control" name="pan" value="{{details.4}}">
+
+
+               </div>
+
+
+               <div class="form-group">
+
+
+                  <label>Status:</label>
+                  <select name="status" id="status">
+                    <option value = "Open">Open</option>
+                    <option value = "Closed">Closed</option>
+
+                  </select>
+
+
+               </div>
+
+
+               <div class="form-group">
+
+
+                  <button class="btn btn-primary" type="sbumit">Update</button>
+
+
+               </div>
+
+
+            </form>
+
+
+         </div>
+
+
+         <div class="modal-footer">
+
+
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+         </div>
+
+
+      </div>
+
+
+   </div>
+
+
+</div>
+
+      
+                
+
+       
+  {% endfor %}
+</tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<footer id ='footer'>
+        <p style="color:#000000;">Thinknyx Technologies LLP<br>
+          </footer>
+{%endblock%}
+</body>
+</html>
+       
+  
+

@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+{% block content%}
+<head>
+  <script src="https://cdn.zinggrid.com/dev/zinggrid-dev.min.js" defer></script>
+
+  <style>
+    body {
+      background: #e6e6e6;
+    }
+    zing-grid[loading] {
+      height: 456px;
+
+    }
+  </style>
+   <style>
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}    
+
+#footer {
+  padding: 3px;
+  background-color: #cccccc;
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: white;
+   text-align: center;
+  
+
+}  
+#ab {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 auto;
+  float: left;
+  border: 2px solid black;
+  border-radius: 5px;
+
+}
+
+#ab {
+  background-color: black;
+
+}
+
+#ac {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 auto;
+  float: left;
+
+}
+
+#ac {
+  background-color: black;
+
+}
+
+
+table {
+ 
+  background-color: #f1f1c1;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+
+
+}
+
+
+td {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 1px;
+}
+th{
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 10px;
+  background-color: black;
+  color: white;
+}
+th{
+  cursor:pointer;
+}
+
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+tr{
+  text-align: center;
+}
+</style>
+</head>
+        {% include 'side.html' %}
+
+   <h1 style="text-align:-webkit-center">Users List</h1>
+   <a  id ="ab" href="/newusers" ><b>Edit Users </b></a>
+  <zing-grid caption="Users List"  src="/getUsers"  layout="row" layout-controls sort filter viewport-stop pager page-size="5" page-size-options="5,10,15" width="1200px">
+
+    <zg-data></zg-data>
+  </zing-grid>
+  <script>
+    // window:load event for Javascript to run after HTML
+    // because this Javascript is injected into the document head
+    window.addEventListener('load', () => {
+      // Javascript code to execute after DOM content
+    });
+  </script>
+
+
+<footer id ="footer">
+        <p style="color:#000000;">Thinknyx Technologies LLP<br>
+          </footer>
+       
+  
+{% endblock content %} 
+
+

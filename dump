@@ -1,0 +1,499 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Sep 21, 2020 at 07:55 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `flasktab`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app`
+--
+
+CREATE TABLE `app` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `gstin` varchar(20) DEFAULT NULL,
+  `pan` varchar(12) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `app`
+--
+
+INSERT INTO `app` (`id`, `name`, `address`, `gstin`, `pan`, `email`) VALUES
+(1, 'Yatin bhatia', 'nit2', '1234567890qwert', 'Chgpb1121g', 'yatinbhati.a14@gmail.com'),
+(2, 'Atul vashisth', 'himachal', '1234567890qwerr', 'Chgpb1123g', 'atulv@gmail.com'),
+(3, 'Chetan', 'yt', '1234567890qwert', 'chgpb1123g', 'ybhatia128@gmail.com'),
+(4, 'Him', '304 thinknyx', '1234567890qwert', 'chgpb1123g', 'ybhatia128@gmail.com'),
+(5, 'Ytin', '304 thinknyx', '1234567890qwerd', 'chgpb1123g', 'ybhatia128@gmail.com'),
+(6, 'Madhav', '304 thinknyx', '1234567890qsdfg', 'chgpb1123g', 'ybhatia128@gmail.com'),
+(7, 'Anup', '304 thinknyx', 'rtyuidfghj56789', '67890opuyt', 'ybhatia128@gmail.com'),
+(8, 'Anup vashisth', 'sec 83', '1234567890qwerc', 'Chgpb1124g', 'ybhatia128@gmail.com'),
+(9, 'Roopam', 'Street no 34 mumbai sec 45', '123456789qwsdfa', 'Chgpb1123g', 'r@gmil.com'),
+(10, 'Yatin bhatia', '2e/137 nit', '1234567890qwerb', 'Chgpb1123g', 'ybhatia128@gmail.com'),
+(11, 'Yatin bhatia', '2e/137 nit', '1234567890qwerm', 'Chgpb1123g', 'ybhatia128@gmail.com'),
+(12, 'Aman', '81 hb', '11111111111111d', 'Chgp111111', 'a.g@gmail.com'),
+(13, 'Yatin bhatia', '2e/137 nit', '1234567890qwerj', 'Chgpb1111g', 'ybhatia128@gmail.com'),
+(14, 'Yatin bhatia', '2e/137 nit', 'Zxcvbnmlkjhgfds', 'Sdfghjklou', 'ybhatia128@gmail.com'),
+(15, 'Roopam', '2e/137 nit', '6666rtyudfghcvb', 'Chgpb114fr', 'ybhatia128@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `expenses`
+--
+
+CREATE TABLE `expenses` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `description` varchar(150) DEFAULT NULL,
+  `file` varchar(255) DEFAULT NULL,
+  `dated` date DEFAULT NULL,
+  `amount` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `expenses`
+--
+
+INSERT INTO `expenses` (`id`, `name`, `description`, `file`, `dated`, `amount`) VALUES
+(1, 'Yatin bhatia', 'Monthly web updates ', '<FileStorage: \'art1.jpg\' (\'image/jpeg\')>', '2020-09-30', 4500),
+(2, 'Roopam', 'Fork from https://javascript.info/function-basics', '<FileStorage: \'anuj cvv.docx\' (\'application/vnd.openxmlformats-officedocument.wordprocessingml.document\')>', '2020-09-30', 2345);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoice`
+--
+
+CREATE TABLE `invoice` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `num` int(11) DEFAULT NULL,
+  `dated` datetime DEFAULT NULL,
+  `unitcost` varchar(10) DEFAULT NULL,
+  `qty` int(5) DEFAULT NULL,
+  `pric` varchar(10) DEFAULT NULL,
+  `item` varchar(20) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `total` varchar(10) DEFAULT NULL,
+  `subtotal` int(10) DEFAULT NULL,
+  `paid` int(10) DEFAULT NULL,
+  `balance` varchar(10) DEFAULT NULL,
+  `name` varchar(15) DEFAULT NULL,
+  `ad` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoiced`
+--
+
+CREATE TABLE `invoiced` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `ad` varchar(20) DEFAULT NULL,
+  `gst` varchar(25) DEFAULT NULL,
+  `pan` varchar(15) DEFAULT NULL,
+  `train` varchar(30) NOT NULL,
+  `num` varchar(15) DEFAULT NULL,
+  `dated` date DEFAULT NULL,
+  `item` varchar(20) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `total` float DEFAULT NULL,
+  `subtotal` float DEFAULT NULL,
+  `words` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `newgst` varchar(10) NOT NULL,
+  `status` varchar(15) DEFAULT 'open'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `invoiced`
+--
+
+INSERT INTO `invoiced` (`id`, `name`, `ad`, `gst`, `pan`, `train`, `num`, `dated`, `item`, `description`, `total`, `subtotal`, `words`, `email`, `newgst`, `status`) VALUES
+(1, 'Madhav', '304 thinknyx', '1234567890qsdfg', 'Chgpb1123g', 'None', 'INA8064', '2020-09-11', 'Web Updates', 'Monthly web updates ', 89, 105.02, 'one hundred five.', 'ybhatia128@gmail.com', '16.02', 'open'),
+(2, 'Yatin bhatia', 'nit2', '1234567890qwert', 'Chgpb1121g', 'None', 'INA2692', '2020-09-11', 'Web Updates', 'Monthly web updates ', 78, 92.04, 'ninety two.', 'yatinbhati.a14@gmail.com', '14.04', 'open'),
+(4, 'Madhav', '304 thinknyx', '1234567890qsdfg', 'Chgpb1123g', 'None', 'INA3607', '2020-09-11', 'Web Updates', 'Monthly web updates ', 89, 105.02, 'one hundred five.', 'ybhatia128@gmail.com', '16.02', 'open'),
+(5, 'Atul vashisth', 'himachal', '1234567890qwerr', 'Chgpb1123g', 'None', 'INA6719', '2020-09-11', 'Web Updates', 'Monthly web updates ', 78, 92.04, 'ninety two.', 'atulv@gmail.com', '14.04', 'open'),
+(6, 'Madhav', '304 thinknyx', '1234567890qsdfg', 'Chgpb1123g', 'None', 'INA9475', '2020-09-11', 'Web Updates', 'Monthly web updates ', 78, 92.04, 'ninety two.', '304 thinknyx', '14.04', 'Closed'),
+(7, 'Anup', '304 thinknyx', 'Rtyuidfghj56789', '67890opuyt', 'None', 'INA4623', '2020-09-11', 'Web Updates', 'Monthly web updates ', 78, 92.04, 'ninety two.', 'ybhatia128@gmail.com', '14.04', 'open'),
+(8, 'Chetan', 'yt', '1234567890qwert', 'Chgpb1123g', 'None', 'INA3895', '2020-09-11', 'Web Updates', 'Monthly web updates ', 78, 92.04, 'ninety two.', 'ybhatia128@gmail.com', '14.04', 'open'),
+(9, 'Anup', '304 thinknyx', 'Rtyuidfghj56789', '67890opuyt', 'None', 'INA6438', '2020-09-11', 'Web Updates', 'Monthly web updates ', 156, 184.08, 'one hundred eighty four.', 'ybhatia128@gmail.com', '28.08', 'open'),
+(10, 'Anup vashisth', 'sec 83', '1234567890qwerc', 'Chgpb1124g', 'None', 'INA5402', '2020-09-11', 'Web Updates', 'Monthly web updates ', 78, 92.04, 'ninety two.', 'ybhatia128@gmail.com', '14.04', 'open'),
+(11, 'Madhav', '304 thinknyx', '1234567890qsdfg', 'Chgpb1123g', 'None', 'INA1883', '2020-09-11', 'Web Updates', 'Monthly web updates ', 748, 882.64, 'eight hundred eighty three.', 'ybhatia128@gmail.com', '134.64', 'open'),
+(12, 'Atul vashisth', 'himachal', '1234567890qwerr', 'Chgpb1123g', 'None', 'INA8011', '2020-09-11', 'Web Updates', 'Monthly web updates ', 678, 800.04, 'eight hundred.', 'atulv@gmail.com', '122.04', 'open'),
+(13, 'Atul vashisth', 'himachal', '1234567890qwerr', 'Chgpb1123g', 'None', 'INA4752', '2020-09-11', 'Web Updates', 'Monthly web updates ', 67, 79.06, 'seventy nine.', 'atulv@gmail.com', '12.06', 'open'),
+(14, 'Anup', '304 thinknyx', 'Rtyuidfghj56789', '67890opuyt', 'None', 'INA3305', '2020-09-11', 'Web Updates', 'Monthly web updates ', 145, 171.1, 'one hundred seventy one.', 'ybhatia128@gmail.com', '26.10', 'open'),
+(15, 'Madhav', '304 thinknyx', '1234567890qsdfg', 'Chgpb1123g', 'None', 'INA7463', '2020-09-11', 'Web Updates', 'Monthly web updates ', 67854, 80067.7, 'eighty thousand sixty eight.', 'ybhatia128@gmail.com', '12213.72', 'open'),
+(16, 'Roopam', 'Street no 34 mumbai ', '123456789qwsdfa', 'Chgpb1123g', 'None', 'INA5765', '2020-09-14', 'Web Updates', 'Monthly web updates ', 350000, 413000, 'four hundred thirteen thousand.', 'r@gmil.com', '63000.00', 'open');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `newrecieved`
+--
+
+CREATE TABLE `newrecieved` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `ad` varchar(20) DEFAULT NULL,
+  `gst` varchar(25) DEFAULT NULL,
+  `pan` varchar(15) DEFAULT NULL,
+  `file` varchar(255) DEFAULT NULL,
+  `num` varchar(15) DEFAULT NULL,
+  `dated` date DEFAULT NULL,
+  `item` varchar(20) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `total` float DEFAULT NULL,
+  `subtotal` float DEFAULT NULL,
+  `words` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `newgst` varchar(10) NOT NULL,
+  `status` varchar(15) NOT NULL DEFAULT 'open'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `newrecieved`
+--
+
+INSERT INTO `newrecieved` (`id`, `name`, `ad`, `gst`, `pan`, `file`, `num`, `dated`, `item`, `description`, `total`, `subtotal`, `words`, `email`, `newgst`, `status`) VALUES
+(1, 'Yatin b', NULL, '1234567890qwert', 'Chgp1', '<FileStorage: \'bg-01.jpg\' (\'image/jpeg\')>', 'INA9631', '2020-09-10', 'Web Updates', 'Monthly web updates ', 789, 931.02, 'nine hundred thirty one.', NULL, '142.02', 'Open'),
+(2, 'Yatin bhatia', NULL, '1234567890qwert', 'Chgp1', '<FileStorage: \'beloved2.jpg\' (\'image/jpeg\')>', 'INA6918', '2020-09-10', 'Web Updates', 'Monthly web updates ', 10.07, 11.88, 'twelve.', NULL, '1.81', 'open'),
+(3, 'Yatin bhatia', NULL, '1234567890qwert', 'Chgp1', '<FileStorage: \'hlp.PNG\' (\'image/png\')>', 'INA9875', '2020-09-10', 'Web Updates', 'Monthly web updates ', 56, 66.08, 'sixty six.', NULL, '10.08', 'open'),
+(4, 'Yatin bhatia', NULL, '1234567890qwert', 'Chgp1', '<FileStorage: \'bg-01.jpg\' (\'image/jpeg\')>', 'INA2437', '2020-09-10', 'Web Updates', 'Monthly web updates ', 789, 931.02, 'nine hundred thirty one.', NULL, '142.02', 'open'),
+(5, 'Yatin bhatia', NULL, '1234567890qwert', 'Chgp1', '<FileStorage: \'beloved.jpg\' (\'image/jpeg\')>', 'INA1406', '2020-09-10', 'Web Updates', 'Monthly web updates ', 0, 0, ' ', NULL, '0.0', 'open'),
+(6, 'Yatin bhatia', NULL, '1234567890qwert', 'Chgp1', '<FileStorage: \'hlp.PNG\' (\'image/png\')>', 'INA2497', '2020-09-19', 'Web Updates', 'Monthly web updates ', 0, 0, ' ', NULL, '0.0', 'open');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase`
+--
+
+CREATE TABLE `purchase` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `ad` varchar(20) DEFAULT NULL,
+  `gst` varchar(25) DEFAULT NULL,
+  `pan` varchar(15) DEFAULT NULL,
+  `train` varchar(30) NOT NULL,
+  `num` varchar(15) DEFAULT NULL,
+  `dated` date DEFAULT NULL,
+  `item` varchar(20) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `total` float DEFAULT NULL,
+  `subtotal` float DEFAULT NULL,
+  `words` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `newgst` varchar(10) NOT NULL,
+  `status` varchar(15) NOT NULL DEFAULT 'open'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `purchase`
+--
+
+INSERT INTO `purchase` (`id`, `name`, `ad`, `gst`, `pan`, `train`, `num`, `dated`, `item`, `description`, `total`, `subtotal`, `words`, `email`, `newgst`, `status`) VALUES
+(1, 'Yatin bhatia', 'nit2', '1234567890qwert', 'Chgpb1121g', 'Python', 'INA7100', '2020-09-10', 'Web Updates', 'Monthly web updates ', 78, 92.04, 'ninety two.', 'nit2', '14.04', 'Open'),
+(2, 'Chetan', 'Yt', '1234567890qwert', 'Chgpb1123g', 'None', 'INA9033', '2020-09-11', 'Web Updates', 'Monthly web updates ', 60, 70.8, 'seventy one.', 'ybhatia128@gmail.com', '10.80', 'open'),
+(3, 'Atul vashisth', 'Himachal', '1234567890qwerr', 'Chgpb1123g', 'None', 'INA2439', '2020-09-11', 'Web Updates', 'Monthly web updates ', 65, 76.7, 'seventy seven.', 'atulv@gmail.com', '11.70', 'open'),
+(4, 'Anup vashisth', 'Sec 83', '1234567890qwerc', 'Chgpb1124g', 'None', 'INA1669', '2020-09-11', 'Web Updates', 'Monthly web updates ', 50, 59, 'fifty nine.', 'ybhatia128@gmail.com', '9.00', 'open'),
+(5, 'Yatin bhatia', 'Nit2', '1234567890qwert', 'Chgpb1121g', 'None', 'INA9643', '2020-09-11', 'Web Updates', 'Monthly web updates ', 60, 70.8, 'seventy one.', 'yatinbhati.a14@gmail.com', '10.80', 'open'),
+(6, 'Chetan', 'Yt', '1234567890qwert', 'Chgpb1123g', 'None', 'INA8882', '2020-09-11', 'Web Updates', 'Monthly web updates ', 70, 82.6, 'eighty three.', 'ybhatia128@gmail.com', '12.60', 'open'),
+(7, 'Ytin', '304 thinknyx', '1234567890qwerd', 'Chgpb1123g', 'None', 'INA3467', '2020-09-11', 'Web Updates', 'Monthly web updates ', 68, 80.24, 'eighty.', 'ybhatia128@gmail.com', '12.24', 'open'),
+(8, 'Him', '304 thinknyx', '1234567890qwert', 'Chgpb1123g', 'None', 'INA9236', '2020-09-19', 'Web Updates', 'Monthly web updates ', 89, 105.02, 'One Hundred Five ', 'ybhatia128@gmail.com', '16.02', 'open'),
+(9, 'Chetan', 'Yt', '1234567890qwert', 'Chgpb1123g', 'None', 'INA3758', '2020-09-19', 'Web Updates', 'Monthly web updates ', 890, 1050.2, 'One Thousand Fifty ', 'ybhatia128@gmail.com', '160.20', 'open');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recieved`
+--
+
+CREATE TABLE `recieved` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `ad` varchar(20) DEFAULT NULL,
+  `gst` varchar(25) DEFAULT NULL,
+  `pan` varchar(15) DEFAULT NULL,
+  `file` varchar(255) DEFAULT NULL,
+  `num` varchar(15) DEFAULT NULL,
+  `dated` date DEFAULT NULL,
+  `item` varchar(20) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `total` float DEFAULT NULL,
+  `subtotal` float DEFAULT NULL,
+  `words` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `newgst` varchar(10) NOT NULL,
+  `status` varchar(15) NOT NULL DEFAULT 'open'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `recieved`
+--
+
+INSERT INTO `recieved` (`id`, `name`, `ad`, `gst`, `pan`, `file`, `num`, `dated`, `item`, `description`, `total`, `subtotal`, `words`, `email`, `newgst`, `status`) VALUES
+(1, 'Yatin bhatia', NULL, '1234567890qwert', 'Chgp1', '<FileStorage: \'abc.jpg\' (\'image/jpeg\')>', 'INA9551', '2020-09-17', 'Web Updates', 'Monthly web updates ', 78, 92.04, 'Ninety Two ', NULL, '14.04', 'open'),
+(2, 'Yatin bhatia', NULL, '1234567890qwert', 'Chgp1', '<FileStorage: \'er1.PNG\' (\'image/png\')>', 'INA6137', '2020-09-17', 'Web Updates', 'Monthly web updates ', 67890, 80110.2, 'Eighty Thousand One Hundred Ten ', NULL, '12220.20', 'open');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `students`
+--
+
+CREATE TABLE `students` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `name`, `email`, `phone`) VALUES
+(4, 'John Doe', 'john', '999999999'),
+(5, 'Karimja', 'ka@gmail.com', '7333392'),
+(6, 'Jamal', 'ja@gmail.com', '3434343'),
+(7, 'Nawid', 'na@gmail.com', '343434'),
+(8, 'Tom Logan', 'Tom@gmail.com', '7347374347'),
+(12, 'Tom Logan', 'tom@gmail.com', '9711222836');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trainer`
+--
+
+CREATE TABLE `trainer` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `trainertype` varchar(20) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `gstin` varchar(20) DEFAULT NULL,
+  `pan` varchar(12) DEFAULT NULL,
+  `acc1` varchar(40) DEFAULT NULL,
+  `acc2` varchar(40) DEFAULT NULL,
+  `acc3` varchar(40) DEFAULT NULL,
+  `acc4` varchar(40) DEFAULT NULL,
+  `tech1` varchar(60) DEFAULT NULL,
+  `tech2` varchar(60) DEFAULT NULL,
+  `tech3` varchar(60) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `trainer`
+--
+
+INSERT INTO `trainer` (`id`, `name`, `trainertype`, `status`, `gstin`, `pan`, `acc1`, `acc2`, `acc3`, `acc4`, `tech1`, `tech2`, `tech3`) VALUES
+(1, 'Yatin Bhatia', 'External', 'Corporate', '1234567890qwert', 'chgp1', 'qqw55', 'himanshu', 'citi', '1234567yhb', 'terra', 'python', 'validation');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `password` varchar(40) DEFAULT NULL,
+  `usertype` varchar(10) NOT NULL,
+  `status` int(3) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `usertype`, `status`) VALUES
+(13, 'admin', 'admin@thinknyx.com', 'password@123', '', 1),
+(15, 'Yatin Bhatia', 'ybhatia128@gmail.com', 'yo@123', 'user', 0),
+(16, 'Yatin', 'ybhatia128@gmail.com', 'yo@123', 'user', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `valid`
+--
+
+CREATE TABLE `valid` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `gstin` varchar(20) DEFAULT NULL,
+  `pan` varchar(12) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `app`
+--
+ALTER TABLE `app`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `expenses`
+--
+ALTER TABLE `expenses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `invoice`
+--
+ALTER TABLE `invoice`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `invoiced`
+--
+ALTER TABLE `invoiced`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `newrecieved`
+--
+ALTER TABLE `newrecieved`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `purchase`
+--
+ALTER TABLE `purchase`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `recieved`
+--
+ALTER TABLE `recieved`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `trainer`
+--
+ALTER TABLE `trainer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `valid`
+--
+ALTER TABLE `valid`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `app`
+--
+ALTER TABLE `app`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `expenses`
+--
+ALTER TABLE `expenses`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `invoice`
+--
+ALTER TABLE `invoice`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `invoiced`
+--
+ALTER TABLE `invoiced`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `newrecieved`
+--
+ALTER TABLE `newrecieved`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `purchase`
+--
+ALTER TABLE `purchase`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `recieved`
+--
+ALTER TABLE `recieved`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `trainer`
+--
+ALTER TABLE `trainer`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `valid`
+--
+ALTER TABLE `valid`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
